@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd "
+       default-autowire="byName">
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="cht.test" use-default-filters="true">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+    </context:component-scan>
+
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:log4j.properties</value>
+                <value>classpath:redis.properties</value>
+                <value>classpath:dubbo.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 测试BeanFactory -->
+    <bean id="carBean" class="cht.test.model.Car" init-method="myInit" destroy-method="myDestroy">
+        <property name="brand" value="奔驰"/>
+        <property name="color" value="银灰色"/>
+        <property name="maxSpeed" value="240"/>
+    </bean>
+
+    <bean id="myBeanPostProcessor" class="cht.test.beanFactory.MyBeanPostPeocessor"/>
+
+    <bean id="myBeanFactoryPostProcessor" class="cht.test.beanFactory.MyBeanFactoryPostProcessor"/>
+
+    <bean id="car" class="cht.test.model.Car"
+          init-method="myInit"
+          destroy-method="myDestroy"
+          p:brand="audi"
+          p:maxSpeed="240"
+          scope="singleton"/>
+
+    <!-- 归集service层配置文件 -->
+    <import resource="classpath*:META-INF/spring/service-context.xml"/>
+
+</beans>

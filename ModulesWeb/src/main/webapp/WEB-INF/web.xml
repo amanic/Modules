@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+    <display-name>Modules</display-name>
+
+
+
+    <filter>
+        <filter-name>charsetFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>charsetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- 通过指定context参数，让sprin使用AnnotationConfigWebapplicationContext而非XmlWebApplicationContext来启动rongqi例如：
+    <context-param>
+        <param-name>configClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>cht.test.model.Trunk</param-value>
+    </context-param>
+
+    ContextLoaderListener通过configClass指定的AnnotationConfigWebapplicationContext
+        根据contextConfigLocation指定的配置类来初始化容器
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+     代替下面7行-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/META-INF/spring/modules-context.xml</param-value>
+    </context-param>
+    <!-- 声明web容器监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- ContextLoaderListener通过contextConfigLocation获取配置文件地址，用来启动webApplicationContext实例，
+     如果在不支持ContextLoaderListener的低版本web容器中，可以使用ContextLoaderServletw完成相同的配置工作
+      例如：
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/META-INF/spring/modules-context.xml</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>springContextLoaderServlet</servlet-name>
+        <servlet-class>org.springframework.web.context.ContextLoaderServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    代替上面7行-->
+
+
+
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:META-INF/spring/modules-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/status.jsp</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+</web-app>

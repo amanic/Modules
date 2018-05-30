@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry location="/Users/chenhaitao/maven/m2/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar" /><!--//驱动包存放的位子-->
+
+    <context id="context1">
+        <!--注释生成配置器（Java字段，Java方法，XML元素，...），子元素有suppressDate和suppressAllComments-->
+        <commentGenerator>
+            <!--注释是否不产生时间标识-->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的所有注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1/test" userId="root" password="root" />
+
+        <javaModelGenerator targetPackage="cht.test.dal.entity" targetProject="src/main/java">
+            <property name="aaa" value="true" /><!--//实体存放的位子-->
+        </javaModelGenerator>
+
+
+        <sqlMapGenerator targetPackage="META-INF.mybatis.mapping"  targetProject="src/main/resources" >
+            <property name="aaa" value="true" /><!-- //mapper.xml存放的位子 -->
+
+        </sqlMapGenerator>
+
+        <table schema="" tableName="user" domainObjectName="User"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true" >
+        </table>
+    </context>
+
+</generatorConfiguration>

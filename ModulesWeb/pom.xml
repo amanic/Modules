@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Modules</artifactId>
+        <groupId>cht.test</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cht.test</groupId>
+    <artifactId>Modules-Web</artifactId>
+    <!-- web需要打包方式为war -->
+    <packaging>war</packaging>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>cht.test</groupId>
+            <artifactId>Modules-Service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+
+
+
+    </dependencies>
+
+
+    <build>
+        <finalName>Modules</finalName>
+
+        <plugins>
+            <!-- jetty插件 -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.8.v20150217</version>
+                <configuration>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                        <resourceBases>
+                            <resourceBase>src/main/webapp</resourceBase>
+                        </resourceBases>
+                        <parentLoaderPriority>true</parentLoaderPriority>
+                    </webApp>
+                    <jvmArgs>-Xmx1024m -Xms1024m -XX:PermSize=256m -XX:MaxPermSize=256m</jvmArgs>
+                    <httpConnector>
+                        <port>8125</port>
+                    </httpConnector>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 使用aop测试实现勇士出征的时候号角响起 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+    <bean id="knight" class="cht.test.test.testDI.BraveKnight">
+        <constructor-arg ref="quest"/>
+    </bean>
+
+    <bean id="quest" class="cht.test.test.testDI.SlayDragonQuest"/>
+
+    <bean id="minstrel" class="cht.test.test.testDI.Minstrel"/>
+
+    <aop:config>
+        <aop:aspect ref="minstrel">
+            <aop:pointcut id="embark" expression="execution(* cht.test.test.testDI.BraveKnight.embarkOnQuest(..))"/>
+            <aop:before method="singBeforeQuest" pointcut-ref="embark"/>
+            <aop:after method="singAfterQuest" pointcut-ref="embark"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
