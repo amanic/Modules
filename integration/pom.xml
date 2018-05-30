@@ -12,11 +12,6 @@
     <artifactId>integration</artifactId>
 
     <dependencies>
-        <!-- zk开始，integration消费服务，需要添加以下依赖 -->
-        <dependency>
-            <groupId>com.weidai.wdmsg</groupId>
-            <artifactId>wdmsg-common-service-facade</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>

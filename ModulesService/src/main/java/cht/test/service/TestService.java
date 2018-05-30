@@ -2,8 +2,6 @@ package cht.test.service;
 
 import cht.test.dal.dao.UserMapper;
 import cht.test.dal.entity.User;
-import com.weidai.wdmsg.facade.api.MsgSendFacade;
-import com.weidai.wdmsg.facade.model.request.SendParamReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,6 @@ public class TestService {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private MsgSendFacade msgSendFacade;
 
     public User test00(Integer id){
         logger.info("tutututututututututututu");
