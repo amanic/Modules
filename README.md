@@ -1,0 +1,4 @@
+#Modules
+这是一个springmvc项目
+集成了dubbo和mybatis
+引用了某些内部包所以可能会报错找不到jar包
