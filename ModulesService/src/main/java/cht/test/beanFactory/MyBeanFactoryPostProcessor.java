@@ -11,7 +11,6 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  * Created by chenhaitao on 2017/8/28.
  */
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
-    @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
         BeanDefinition beanDefinition = configurableListableBeanFactory.getBeanDefinition("carBean");
         beanDefinition.getPropertyValues().addPropertyValue("brand","benz");

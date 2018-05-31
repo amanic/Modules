@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     <display-name>Modules</display-name>
 
 
@@ -37,19 +38,19 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
      代替下面7行-->
+
+    <!--====================================================================================================================================-->
+    <!-- WebApplicationContext初始化 -->
+    <!-- 方法1：声明web容器监听器 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/META-INF/spring/modules-context.xml</param-value>
     </context-param>
-    <!-- 声明web容器监听器 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!-- ContextLoaderListener通过contextConfigLocation获取配置文件地址，用来启动webApplicationContext实例，
-     如果在不支持ContextLoaderListener的低版本web容器中，可以使用ContextLoaderServletw完成相同的配置工作
-      例如：
+    <!-- 方法2：自启动的servlet
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/META-INF/spring/modules-context.xml</param-value>
@@ -60,7 +61,7 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     代替上面7行-->
-
+<!--====================================================================================================================================-->
 
 
 

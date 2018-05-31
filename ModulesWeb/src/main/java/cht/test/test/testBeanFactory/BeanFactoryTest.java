@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.web.context.ConfigurableWebApplicationContext;
 
 /**
  * Created by chenhaitao on 2018/5/31.
@@ -48,4 +49,9 @@ public class BeanFactoryTest {
         Car car = context.getBean("car",Car.class);
         System.out.println(car.toString());
     }
+
+    /*public static void getBeanByWebApplicationContext(){
+        ApplicationContext context = new ConfigurableWebApplicationContext() {
+        }
+    }*/
 }

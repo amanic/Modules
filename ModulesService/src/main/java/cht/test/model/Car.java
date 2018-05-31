@@ -70,24 +70,20 @@ public class Car implements BeanFactoryAware,BeanNameAware,InitializingBean,Disp
         System.out.println(this.toString());
     }
 
-    @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         System.out.println("setBeanFactory");
         this.beanFactory = beanFactory;
     }
 
-    @Override
     public void setBeanName(String s) {
         System.out.println("setBeanName");
         this.beanName = s;
     }
 
-    @Override
     public void destroy() throws Exception {
         System.out.println("destroy");
     }
 
-    @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("afterPropertiesSet");
     }
