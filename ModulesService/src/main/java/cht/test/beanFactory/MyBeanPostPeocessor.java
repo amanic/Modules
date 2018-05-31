@@ -10,7 +10,6 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * Created by chenhaitao on 2017/8/28.
  */
 public class MyBeanPostPeocessor implements BeanPostProcessor{
-    @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if("car".equals(beanName)){
             Car car = (Car)bean;
@@ -22,7 +21,6 @@ public class MyBeanPostPeocessor implements BeanPostProcessor{
         return bean;
     }
 
-    @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if("car".equals(beanName)){
             Car car = (Car)bean;
