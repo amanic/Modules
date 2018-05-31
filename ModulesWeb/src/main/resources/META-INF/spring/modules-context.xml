@@ -38,22 +38,17 @@
     </bean>
 
 
-    <bean id="car" class="cht.test.test.testBeanFactory.Car">
-        <property name="brand" value="奔驰"/>
-        <property name="color" value="银灰色"/>
-        <property name="maxSpeed" value="240"/>
-    </bean>
 
     <bean id="myBeanPostProcessor" class="cht.test.beanFactory.MyBeanPostPeocessor"/>
 
     <bean id="myBeanFactoryPostProcessor" class="cht.test.beanFactory.MyBeanFactoryPostProcessor"/>
 
-    <!--<bean id="car" class="cht.test.model.Car"
+    <bean id="car" class="cht.test.model.Car"
           init-method="myInit"
           destroy-method="myDestroy"
           p:brand="audi"
           p:maxSpeed="240"
-          scope="singleton"/>-->
+          scope="singleton"/>
 
     <!-- 归集service层配置文件 -->
     <import resource="classpath*:META-INF/spring/service-context.xml"/>

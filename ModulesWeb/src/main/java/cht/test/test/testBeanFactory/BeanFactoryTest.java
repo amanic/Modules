@@ -1,7 +1,11 @@
 package cht.test.test.testBeanFactory;
 
+import cht.test.model.Car;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -20,14 +24,28 @@ public class BeanFactoryTest {
         System.out.println("initial...");
         Car car = factory.getBean("car",Car.class);
         System.out.println("finish...");
-        System.out.println(car.introduce());
+        System.out.println(car.toString());
     }
 
     public static void main(String[] args) {
         try {
-            getBean();
+//            getBean();
+//            getBeanByApplicationContext();
+            getBeanByAnnotationApplicationContext();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void getBeanByApplicationContext(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:META-INF/spring/modules-context.xml");
+        Car car = context.getBean("car",Car.class);
+        car.introduce();
+    }
+
+    public static void getBeanByAnnotationApplicationContext(){
+        ApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
+        Car car = context.getBean("car",Car.class);
+        System.out.println(car.toString());
     }
 }
