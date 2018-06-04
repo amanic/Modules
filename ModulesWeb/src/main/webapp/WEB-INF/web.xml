@@ -43,6 +43,11 @@
     <!--====================================================================================================================================-->
     <!-- WebApplicationContext初始化 -->
     <!-- 方法1：声明web容器监听器 -->
+    <!--这部分注释掉的是猜测
+    <context-param>
+        <param-name>configClass</param-name>
+        <param-value>org.springframework.web.context.support.XmlWebApplicationContext</param-value>
+    </context-param>-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/META-INF/spring/modules-context.xml</param-value>
